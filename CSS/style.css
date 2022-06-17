@@ -42,18 +42,6 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-body.lock {
-  overflow: hidden;
-}
-
-@media (max-width: 767.98px) {
-  body.lock {
-    width: 100%;
-    position: fixed;
-    overflow: hidden;
-  }
-}
-
 input, button, textarea {
   font-family: "Lato";
 }
@@ -111,13 +99,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ibg img {
-  width: 0;
-  height: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  visibility: hidden;
+  display: none;
 }
 
 .mainblock {
