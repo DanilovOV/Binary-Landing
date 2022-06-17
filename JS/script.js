@@ -1,5 +1,5 @@
 // Плавный скролл
-document.querySelectorAll('a[href^="#"').forEach(link => {
+document.querySelectorAll('a[href^="#"]').forEach(link => {
 
     link.addEventListener('click', function(e) {
         e.preventDefault();
@@ -8,8 +8,7 @@ document.querySelectorAll('a[href^="#"').forEach(link => {
 
         const scrollTarget = document.getElementById(href);
 
-        // Если есть фиксированный заголовок, задать доп. отступ, равный его высоте
-        // Если нет, то установить значение 0
+        // Доп. смещение на высоту фиксированного заголовка
         const topOffset = 0;
 
         const elementPosition = scrollTarget.getBoundingClientRect().top;
@@ -22,9 +21,19 @@ document.querySelectorAll('a[href^="#"').forEach(link => {
     });
 });
 
+// Параллакс
+window.onscroll = AddParallax;
+
+let image = document.querySelector('.mainblock__image');
+
+function AddParallax() {
+    let imageYoffset = 0 - window.pageYOffset / 2;
+    image.style.transform = 'translate3d(0, ' + imageYoffset + 'px, 0';
+}
+
 $(document).ready(function () {
     // Полноэкранное стартовое изображение
-    $(window).resize(function (event) {
+    $(window).resize(function() {
         mainblock();
     });
     function mainblock() {
@@ -34,7 +43,7 @@ $(document).ready(function () {
     mainblock();
 
     // Фильтр изображений
-    $('.filter__item').click(function (event) {
+    $('.filter__item').click(function() {
         let i = $(this).data('filter');
         if (i == 1) {
             $('.portfolio__column').show();
@@ -50,19 +59,13 @@ $(document).ready(function () {
 
     // Делает изображение с классом ibg фоновым
     function ibg(){
-        let ibg=document.querySelectorAll(".ibg");
+        let ibg = document.querySelectorAll(".ibg");
         for (let i = 0; i < ibg.length; i++) {
             if(ibg[i].querySelector('img')) {
-                ibg[i].style.backgroundImage = 'url('+ibg[i].querySelector('img').getAttribute('src')+')';
+                ibg[i].style.backgroundImage = 'url(' + ibg[i].querySelector('img').getAttribute('src') + ')';
             }
         }
     }
     ibg();
-
-    // Параллакс
-    $(window).scroll(function () {
-        let s = 0 - $(this).scrollTop() / 2;
-        $('.mainblock__image').css('transform', ' translate3d(0, ' + s + 'px, 0');
-    });
 });
 
