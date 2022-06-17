@@ -60,9 +60,9 @@ $(document).ready(function () {
     ibg();
 
     // Параллакс
-    $(window).scroll(function (event) {
+    $(window).scroll(function () {
         let s = 0 - $(this).scrollTop() / 2;
-        $('.mainblock__image').css('transform', ' translate3d(0, ' +s+ 'px, 0');
+        $('.mainblock__image').css('transform', ' translate3d(0, ' + s + 'px, 0');
     });
 });
 
